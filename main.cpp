@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 using namespace std;
 
 // holds each expense values
@@ -17,12 +18,60 @@ void addExpense(vector<Expense>& expenses){
     cin >> exp.amt;
     cout << "Enter category:" <<endl;
     cin >> exp.category;
-    cout << "Enter small description:" <<endl;
+    cout << "Enter short description:" <<endl;
     cin >> exp.desc;
 
     expenses.push_back(exp);
 
 }
+
+//function to view all expenses
+void viewExpenses(const vector<Expense>& expenses){
+    int count = 1;
+    for (const Expense& exp : expenses){
+        cout << count << ")" <<endl;
+        cout << "Amount: " << exp.amt << endl;
+        cout << "Category: " << exp.category << endl;
+        cout << "Description: " << exp.desc << endl;
+        count++;
+    }
+}
+
+//function to show summary i.e. total amt, amt in each category, highest spent
+void showSummary(const vector<Expense>& expenses){
+    // total amount of all expenses
+    double total = 0;
+
+    for (const Expense& exp : expenses){
+        total+= exp.amt;
+    }
+    cout << "Total amount spent: " << total << endl;
+
+    //to calculate total amt spent in each category
+    map<string, double> categoryTotal;
+
+    for (const Expense& exp : expenses) {
+    categoryTotal[exp.category] += exp.amt;
+    }
+
+    for (const auto& item : categoryTotal) {
+    cout << item.first << ": " << item.second << endl;
+    }
+
+    //to find category where user spent most
+    double highest = 0;
+    string highestCategory;
+
+    for (const auto& item : categoryTotal) {
+        if (item.second > highest) {
+            highest = item.second;
+            highestCategory = item.first;
+        }
+    }
+    cout << "User spent the highest on: " << highestCategory <<endl;
+        
+}
+
 
 int main() {
     cout << "Expense Tracker" <<endl;
