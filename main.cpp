@@ -76,6 +76,44 @@ void showSummary(const vector<Expense>& expenses){
 int main() {
     cout << "Expense Tracker" <<endl;
 
+    vector<Expense> expenses;
+    int n = 0;
+
+    // menu of choices
+    while (n != 4) {
+    cout << "\n1. Add Expense" << endl;
+    cout << "2. View Expenses" << endl;
+    cout << "3. Show Summary" << endl;
+    cout << "4. Exit" << endl;
+
+    cout << "Enter choice: ";
+    cin >> n;
+    
+
+    // using switch 
+    switch(n){
+        case 1:
+        addExpense(expenses);
+        break;
+
+    case 2:
+        viewExpenses(expenses);
+        break;
+
+    case 3:
+        showSummary(expenses);
+        break;
+
+    case 4:
+        cout << "Exiting....." << endl;
+        break;
+
+    default:
+        cout << "Invalid choice" << endl;
+
+    }
+}
+
 
     return 0;
 }
