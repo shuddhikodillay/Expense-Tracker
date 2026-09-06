@@ -19,7 +19,8 @@ void addExpense(vector<Expense>& expenses){
     cout << "Enter category:" <<endl;
     cin >> exp.category;
     cout << "Enter short description:" <<endl;
-    cin >> exp.desc;
+    cin.ignore();
+    getline(cin,exp.desc);
 
     expenses.push_back(exp);
 
@@ -37,8 +38,9 @@ void viewExpenses(const vector<Expense>& expenses){
     }
 }
 
-//function to show summary i.e. total amt, amt in each category, highest spent
+//function to show summary 
 void showSummary(const vector<Expense>& expenses){
+    cout << "------ Summary ------"
     // total amount of all expenses
     double total = 0;
 
@@ -74,7 +76,7 @@ void showSummary(const vector<Expense>& expenses){
 
 
 int main() {
-    cout << "Expense Tracker" <<endl;
+    cout << "------Expense Tracker------" <<endl;
 
     vector<Expense> expenses;
     int n = 0;
