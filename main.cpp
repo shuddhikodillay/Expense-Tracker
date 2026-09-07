@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <map>
 using namespace std;
@@ -16,6 +17,9 @@ void addExpense(vector<Expense>& expenses){
 
     cout << "Enter amount:" <<endl;
     cin >> exp.amt;
+    while (exp.amt <= 0) {
+        cout << "Enter a valid positive amount: ";
+        cin >> exp.amt;}
     cout << "Enter category:" <<endl;
     cin >> exp.category;
     cout << "Enter short description:" <<endl;
@@ -40,7 +44,7 @@ void viewExpenses(const vector<Expense>& expenses){
 
 //function to show summary 
 void showSummary(const vector<Expense>& expenses){
-    cout << "------ Summary ------"
+    cout << "------ Summary ------" <<endl;
     // total amount of all expenses
     double total = 0;
 
